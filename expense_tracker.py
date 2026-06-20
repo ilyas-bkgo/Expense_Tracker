@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 
 # Global list to store expenses in memory
-EXPENSES = []
 
 
 def load_data():
@@ -46,6 +45,7 @@ def add_expense(current_expenses):
     expense = {"amount": amount, "category": category, "date": date, "note": note}
 
     current_expenses.append(expense)
+    save_data(current_expenses)
     print(f"Expense of ${amount:.2f} in {category} added successfully")
 
 
@@ -122,10 +122,11 @@ def main_menu():
         print("4. filter expenses by month")
         print("5. Exit")
 
-        choice = input("Choose an option(1 --> 4) : ").strip()
+        choice = input("Choose an option(1 --> 5) : ").strip()
 
         if choice == "1":
             add_expense(my_expenses)
+            save_data(my_expenses)
         elif choice == "2":
             list_expenses(my_expenses)
         elif choice == "3":
@@ -137,7 +138,7 @@ def main_menu():
             save_data(my_expenses)
             break
         else:
-            print("invalide choice , enter a number between 1 and 4")
+            print("invalide choice , enter a number between 1 and 5")
 
 
 if __name__ == "__main__":
