@@ -31,11 +31,20 @@ def add_expense():
 
     category = input("Category (eg. food , transport) :").strip().capitalize()
 
-    date_input = input("Date(YYYY-MM-DD) [leave blank for today]: ").strip()
-    if not date_input:
-        date = datetime.today().strftime("%Y-%m-%d")
-    else:
-        date = date_input
+    while True:
+        date_input = input("Date(YYYY-MM-DD) [leave blank for today]: ").strip()
+        if not date_input:
+            date = datetime.today().strftime("%Y-%m-%d")
+            break
+
+        try:
+            valid_date = datetime.strptime(date_input, "%Y-%m-%d")
+            date = valid_date.strftime("%Y-%m-%d")
+            break
+        except ValueError:
+            print("Invalid date format. Please use YYYY-MM-DD (e.g., 2026-06-21).")
+
+
 
     note = input("Note , description : ").strip()
 
