@@ -42,9 +42,8 @@ def add_expense():
             date = valid_date.strftime("%Y-%m-%d")
             break
         except ValueError:
-            print("Invalid date format. Please use YYYY-MM-DD (e.g., 2026-06-21).")
-
-
+            current_date = datetime.today().strftime("%Y-%m-%d")
+            print(f"Invalid date format. Please use YYYY-MM-DD ({current_date}).")
 
     note = input("Note , description : ").strip()
 
